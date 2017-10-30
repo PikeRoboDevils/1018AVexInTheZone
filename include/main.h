@@ -26,7 +26,7 @@
 #define MAIN_H_
 
 #include <API.h>
-
+#include "robot.h"
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus
 extern "C" {
@@ -36,7 +36,7 @@ extern "C" {
 // actual code. If a function does not match a prototype, compile errors will occur.
 
 // Prototypes for initialization, operator control and autonomous
-
+bool firstTimeDisabled = false;
 /**
  * Runs the user autonomous code. This function will be started in its own task with the default
  * priority and stack size whenever the robot is enabled via the Field Management System or the
