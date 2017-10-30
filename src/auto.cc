@@ -41,4 +41,8 @@
  * disable/enable cycle.
  */
  void autonomous() {
+    autonomousInit();
+    while(true) {
+        autonomousPeriodic();
+    }
 }
