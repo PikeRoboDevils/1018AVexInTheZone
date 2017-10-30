@@ -25,7 +25,7 @@ UPLOAD=@java -jar firmware/uniflash.jar vex $(BINDIR)/$(OUTBIN)
 # Advanced options
 ASMEXT=s
 CEXT=c
-CPPEXT=cpp
+CPPEXT=cc
 HEXT=h
 INCLUDE=-I$(ROOT)/include -I$(ROOT)/src
 OUTBIN=output.bin
