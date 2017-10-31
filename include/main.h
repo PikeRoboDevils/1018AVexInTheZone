@@ -26,7 +26,6 @@
 #define MAIN_H_
 
 #include <API.h>
-
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus
 extern "C" {
@@ -36,6 +35,7 @@ extern "C" {
 // actual code. If a function does not match a prototype, compile errors will occur.
 
 // Prototypes for initialization, operator control and autonomous
+
 
 /**
  * Runs the user autonomous code. This function will be started in its own task with the default
