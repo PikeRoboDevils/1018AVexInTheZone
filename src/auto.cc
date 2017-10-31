@@ -41,8 +41,13 @@
  * disable/enable cycle.
  */
  void autonomous() {
-    autonomousInit();
     while(true) {
-        autonomousPeriodic();
+        if(isEnabled()) {
+            if(firstTimeAuto) {
+                autonomousInit();
+                firstTimeAuto = false;
+            }
+            autonomousPeriodic();
+        }
     }
 }
