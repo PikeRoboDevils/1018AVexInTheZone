@@ -1,4 +1,6 @@
-#include "robot.h"
+#include "robotbase.h"
+
+
 
 void initIO() {
 
@@ -25,7 +27,9 @@ void autonomousPeriodic() {
 }
 
 void disabledInit() {
-
+    for(int i = 0; i < 10; i++) {
+        motorSet(i, 0);
+    }
 }
 
 void disabledPeriodic() {
