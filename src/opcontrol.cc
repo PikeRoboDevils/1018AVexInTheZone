@@ -20,6 +20,7 @@
  */
 
 #include "main.h"
+#include "util.h"
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -39,7 +40,23 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
+
     while(true) {
-        arcadeDrive(3, 1);
+        int power = joystickGetAnalog(1, 3);
+        int turn = -joystickGetAnalog(1, 1);
+        power = deadband(power, 10);
+        turn = deadband(turn, 10);
+        arcadeDrive(power, turn);
+        if(joystickGetDigital(1, 5, JOY_UP)) {
+            motorSet(6, 127);
+            motorSet(7, -127);
+        } else if(joystickGetDigital(1, 5, JOY_DOWN)) {
+            motorSet(6, -127);
+            motorSet(7, 127);
+        } else {
+            motorSet(6, 0);
+            motorSet(7, 0);
+        }
+        
     }
 }
