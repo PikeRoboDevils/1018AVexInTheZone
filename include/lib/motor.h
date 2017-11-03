@@ -1,5 +1,5 @@
 /**
- * @file motors.hpp
+ * @file motor.h
  * @brief Hardware abstraction of motors
  *
  * Copyright (C) 2017-2018  Pike RoboDevils
