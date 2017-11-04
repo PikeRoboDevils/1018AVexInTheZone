@@ -31,12 +31,34 @@ enum Mode {
 
 enum Mode previousMode = DISABLED;
 
-void disabled() {
-    if(previousMode != DISABLED) {
-        disabledInit();
-        previousMode = DISABLED;
+TaskHandle robotHandle;
+
+void robotLoop(void * parameter) {
+    while(true) {
+        if(isEnabled()) {
+            if(isAutonomous()) {
+                if(previousMode != AUTONOMOUS) {
+                    autonomousInit();
+                    previousMode = AUTONOMOUS;
+                }
+                autonomousPeriodic();
+            } else {
+                if(previousMode != TELEOP) {
+                    teleopInit();
+                    previousMode = TELEOP;
+                }
+                    teleopPeriodic();
+            }
+        } else {
+            if(previousMode != DISABLED) {
+                disabledInit();
+                previousMode = DISABLED;
+            }
+            disabledPeriodic();
+        }
+        robotPeriodic();
+        delay(20);
     }
-    disabledPeriodic();
 }
 
 /*
@@ -66,6 +88,7 @@ void initializeIO() {
  */
 void initialize() {
     robotInit();
+    robotHandle = taskCreate(robotLoop, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
 }
 
 /*
@@ -83,18 +106,7 @@ void initialize() {
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
-    while(true) {
-        if(isEnabled()) {
-            if(previousMode != AUTONOMOUS) {
-                autonomousInit();
-                previousMode = AUTONOMOUS;
-            }
-            autonomousPeriodic();
-        } else {
-            disabled();
-        }
-        robotPeriodic();
-    }
+
 }
 
 /*
@@ -115,18 +127,7 @@ void autonomous() {
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
-    while(true) {
-        if(isEnabled()) {
-            if(previousMode != TELEOP) {
-                teleopInit();
-                previousMode = TELEOP;
-            }
-            teleopPeriodic();
-        } else {
-            disabled();
-        }
-        robotPeriodic();
-    }
+
 }
 
 #endif
