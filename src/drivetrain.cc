@@ -20,6 +20,9 @@
 
 #include "drivetrain.h"
 #include <API.h>
+extern "C" {
+    #include "util.h"
+}
 
 unsigned char RA_MOTOR = 2;
 unsigned char RB_MOTOR = 4;
@@ -35,11 +38,13 @@ Drivetrain::Drivetrain() {
 void Drivetrain::setLeftRightMotors(int left, int right) {
     motorSet(RA_MOTOR, right);
     motorSet(RB_MOTOR, right);
-    motorSet(LA_MOTOR, left);
-    motorSet(LB_MOTOR, left);
+    motorSet(LA_MOTOR, -left);
+    motorSet(LB_MOTOR, -left);
 }
 
 void Drivetrain::arcadeDrive(int power, int turn) {
+    power = deadband(power, 10);
+    turn = deadband(turn, 10);
     int left = power - turn;
     int right = power + turn;
     setLeftRightMotors(left, right);
