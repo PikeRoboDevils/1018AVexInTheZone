@@ -22,7 +22,6 @@ CPPOBJ:=$(patsubst %.o,$(BINDIR)/%.o,$(CPPSRC:.$(CPPEXT)=.o))
 OUT:=$(BINDIR)/$(OUTNAME)
 
 .PHONY: all clean upload _force_look
-
 # By default, compile program
 all: $(BINDIR) $(OUT)
 

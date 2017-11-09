@@ -28,10 +28,10 @@ void teleopInit() {
 }
 
 void teleopPeriodic() {
+    lcdSetText(uart1, 1, "teleopperiodic:");
     int power = joystickGetAnalog(1, 3);
     int turn = -joystickGetAnalog(1, 1);
     drivetrain->arcadeDrive(power, turn);
-    lcdSetText(uart1, 1, "teleopperiodic:");
 
 }
 

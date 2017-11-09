@@ -23,6 +23,7 @@
 
 class Drivetrain {
     private:
+
         static Drivetrain* instance;
 
         Drivetrain();

@@ -1,0 +1,9 @@
+#ifndef ROBOT_CONSTANTS_H_
+#define ROBOT_CONSTANTS_H_
+
+#define DT_RA_MOTOR_PORT 2
+#define DT_RB_MOTOR_PORT 4
+#define DT_LA_MOTOR_PORT 3
+#define DT_LB_MOTOR_PORT 5
+
+#endif

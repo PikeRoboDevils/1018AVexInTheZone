@@ -23,6 +23,13 @@
 #include "main.h"
 #include "robot.h"
 
+/**
+ * OkapiLib stuff
+ */
+extern "C" {
+  void __libc_init_array();
+}
+
 enum Mode {
     DISABLED = 0,
     TELEOP = 1,
@@ -70,6 +77,7 @@ void robotLoop(void * parameter) {
  * configure a UART port (usartOpen()) but cannot set up an LCD (lcdInit()).
  */
 void initializeIO() {
+    __libc_init_array();
     initIO();
 }
 
