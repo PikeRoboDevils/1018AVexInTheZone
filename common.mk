@@ -21,11 +21,13 @@ MCUPREPARE=$(OBJCOPY) $(OUT) -O binary $(BINDIR)/$(OUTBIN)
 SIZEFLAGS=
 # Uploads program using java
 UPLOAD=@java -jar firmware/uniflash.jar vex $(BINDIR)/$(OUTBIN)
+# Flashes program using the PROS CLI flash command
+FLASH=pros flash -f $(BINDIR)/$(OUTBIN)
 
 # Advanced options
 ASMEXT=s
 CEXT=c
-CPPEXT=cpp
+CPPEXT=cc
 HEXT=h
 INCLUDE=-I$(ROOT)/include -I$(ROOT)/src
 OUTBIN=output.bin
@@ -36,7 +38,7 @@ AFLAGS:=$(MCUAFLAGS)
 ARFLAGS:=$(MCUCFLAGS)
 CCFLAGS:=-c -Wall $(MCUCFLAGS) -Os -ffunction-sections -fsigned-char -fomit-frame-pointer -fsingle-precision-constant
 CFLAGS:=$(CCFLAGS) -std=gnu99 -Werror=implicit-function-declaration
-CPPFLAGS:=$(CCFLAGS) -fno-exceptions -fno-rtti -felide-constructors
+CPPFLAGS:=$(CCFLAGS) -std=c++14 -fno-exceptions -fno-rtti -felide-constructors
 LDFLAGS:=-Wall $(MCUCFLAGS) $(MCULFLAGS) -Wl,--gc-sections
 
 # Tools used in program
