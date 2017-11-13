@@ -28,9 +28,9 @@ Drivetrain::Drivetrain() {}
 
 void Drivetrain::setLeftRightMotors(int left, int right) {
     motorSet(DT_LA_MOTOR_PORT, -left);
-    motorSet(DT_LB_MOTOR_PORT, -left);
+    //motorSet(DT_LB_MOTOR_PORT, -left);
     motorSet(DT_RA_MOTOR_PORT, right);
-    motorSet(DT_RB_MOTOR_PORT, right);
+    //motorSet(DT_RB_MOTOR_PORT, right);
 }
 
 void Drivetrain::arcadeDrive(int power, int turn) {
